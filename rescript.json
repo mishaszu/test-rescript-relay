@@ -21,7 +21,7 @@
     "rescript-relay",
     "@glennsl/rescript-fetch"
   ],
-  "bsc-flags": ["-open RescriptCore", "-uncurried"],
+  "bsc-flags": ["-open RescriptCore"],
   "jsx": {
     "version": 4
   }

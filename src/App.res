@@ -1,4 +1,4 @@
-module QUERY = %relay(`
+module Query = %relay(`
   query AppQuery {
     rawAlbums {
       nodes {
