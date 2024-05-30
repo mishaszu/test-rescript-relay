@@ -1,0 +1,87 @@
+schema {
+  query: QueryRoot
+  mutation: MutationRoot
+}
+
+input FilterRawAlbum {
+  title: String
+}
+
+type MutationRoot {
+  hello(input: String!): String!
+}
+
+# ISO 8601 combined date and time without timezone.
+#
+# # Examples
+#
+# * `2015-07-01T08:59:60.123`,
+scalar NaiveDateTime
+
+# Information about pagination in a connection
+type PageInfo {
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+}
+
+type QueryRoot {
+  rawAlbum(id: RelayNodeID!): RawAlbum!
+  rawAlbums(
+    after: String
+    before: String
+    first: Int
+    last: Int
+    filter: FilterRawAlbum
+  ): RawAlbumConnection!
+}
+
+type RawAlbum {
+  id: RelayNodeID!
+  url: String!
+  title: String!
+  createdAt: NaiveDateTime!
+}
+
+type RawAlbumConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [RawAlbumEdge!]!
+
+  # A list of nodes.
+  nodes: [RawAlbum!]!
+
+  # Total result set count
+  totalCount: Int!
+}
+
+# An edge in a connection.
+type RawAlbumEdge {
+  # The item at the end of the edge
+  node: RawAlbum!
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+scalar RelayNodeID
+
+# A UUID is a unique 128-bit number, stored as 16 octets. UUIDs are parsed as
+# Strings within GraphQL. UUIDs are used to assign unique identifiers to
+# entities without requiring a central allocating authority.
+#
+# # References
+#
+# * [Wikipedia: Universally Unique Identifier](http://en.wikipedia.org/wiki/Universally_unique_identifier)
+# * [RFC4122: A Universally Unique IDentifier (UUID) URN Namespace](http://tools.ietf.org/html/rfc4122)
+scalar UUID

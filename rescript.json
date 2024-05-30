@@ -1,0 +1,28 @@
+{
+  "name": "test-relay",
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "package-specs": [
+    {
+      "module": "esmodule",
+      "in-source": true
+    }
+  ],
+  "uncurried": true,
+  "ppx-flags": ["rescript-relay/ppx"],
+  "suffix": ".res.mjs",
+  "bs-dependencies": [
+    "@rescript/core",
+    "@rescript/react",
+    "rescript-relay",
+    "@glennsl/rescript-fetch"
+  ],
+  "bsc-flags": ["-open RescriptCore", "-uncurried"],
+  "jsx": {
+    "version": 4
+  }
+}
